@@ -1,3 +1,4 @@
+"这是pid"
 #include "headfile.h"
 
 extern int state[7];
