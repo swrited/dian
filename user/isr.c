@@ -197,13 +197,13 @@ void TIMG7_IRQHandler()
 		
 		if(task==2&&stop_flag==1)
 		{
+
 			if(zhuang==0)
 			{
-
-//
+	
 				pwm_cha=pid_angle(yaw_my,yaw_set[0]);
-				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
-				pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);
+				pwm_motor2=pid_left(my_z[3],22-pwm_cha);
+				pwm_motor1=pid_right(my_y[3],22+pwm_cha);
 				if(pian_num!=-1&&time_kai==0)//进入赛道，并且蜂鸣器鸣叫
 				{
 					zhuang=1;
@@ -225,8 +225,8 @@ void TIMG7_IRQHandler()
 //					pwm_cha=0;
 //				}
 //			if(pwm_cha<0) pwm_cha=-pwm_cha;//右拐
-		    pwm_motor2=pid_left(my_z[3],speed*(1+pwm_cha/40.0));
-				pwm_motor1=pid_right(my_y[3],speed*(1-pwm_cha/40.0));
+		    pwm_motor2=pid_left(my_z[3],17*(1+pwm_cha/40.0));
+				pwm_motor1=pid_right(my_y[3],17*(1-pwm_cha/40.0));
 				if(pian_num==-1&&time_kai==0&&abs_sin(yaw_my)>180)//离开赛道
 				{
 					zhuang=5;
@@ -240,8 +240,8 @@ void TIMG7_IRQHandler()
 			if(zhuang==5)//回正
 			{
 				pwm_cha=pid_angle(yaw_my,yaw_set[1]-30);
-			pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
-			pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);
+			pwm_motor2=pid_left(my_z[3],22-pwm_cha);
+			pwm_motor1=pid_right(my_y[3],22+pwm_cha);
 				if(time8_flag==0)//进入赛道，并且蜂鸣器鸣叫
 				{
 					zhuang=2;
@@ -267,8 +267,8 @@ void TIMG7_IRQHandler()
 				}
 				else
 					pwm_cha=pid_angle(yaw_my,yaw_set[1]);
-				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
-				pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);
+				pwm_motor2=pid_left(my_z[3],22-pwm_cha);
+				pwm_motor1=pid_right(my_y[3],22+pwm_cha);
 				if(pian_num!=-1&&time_kai==0)//进入赛道，并且蜂鸣器鸣叫
 				{
 					zhuang=3;
@@ -294,8 +294,8 @@ void TIMG7_IRQHandler()
 					pwm_cha=pid_cha(pian_num);
 				}
 				if(pwm_cha<-2) pwm_cha=-2;
-		    pwm_motor2=pid_left(my_z[3],speed*(1+pwm_cha/40.0));
-				pwm_motor1=pid_right(my_y[3],speed*(1-pwm_cha/40.0));
+		    pwm_motor2=pid_left(my_z[3],17*(1+pwm_cha/40.0));
+				pwm_motor1=pid_right(my_y[3],17*(1-pwm_cha/40.0));
 				if(pian_num==-1&&time_kai==0&&abs_sin(yaw_my)<30)//离开赛道
 				{
 					zhuang=4;
@@ -305,8 +305,8 @@ void TIMG7_IRQHandler()
 			if(zhuang==4)//回正
 			{
 				pwm_cha=pid_angle(yaw_my,yaw_set[0]);
-				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
-				pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);
+				pwm_motor2=pid_left(my_z[3],22-pwm_cha);
+				pwm_motor1=pid_right(my_y[3],22+pwm_cha);
 				if(time8_flag==0)//进入赛道，并且蜂鸣器鸣叫
 				{
 					stop_flag=0;

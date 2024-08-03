@@ -201,7 +201,7 @@ void init_pid_my()
 	motor_y.last=0;
 	motor_y.out=0;
 	
-	motor_c.kp=10;
+	motor_c.kp=11;
 	motor_c.kd=0;
 	motor_c.last=0;
 	motor_c.out=0;
