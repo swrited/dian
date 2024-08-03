@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Thu Aug  1 16:27:35 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 6190004: Last Updated: Sat Aug  3 14:16:50 2024
 <BR><P>
 <H3>Maximum Stack Usage =        384 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -308,6 +308,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_printf_char_file
 </UL>
 <BR>[Called By]<UL><LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMG7_IRQHandler
+<LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
 <P><STRONG><a name="[36]"></a>__printf</STRONG> (Thumb, 108 bytes, Stack size 24 bytes, __printf.o(.text))
@@ -512,6 +513,7 @@ Global Symbols
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_right
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_left
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_cha
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMG7_IRQHandler
 </UL>
 
 <P><STRONG><a name="[e1]"></a>_fflt</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fflti.o(.text), UNUSED)
@@ -986,7 +988,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_mspm0g350x_uvision.o(RESET)
 </UL>
-<P><STRONG><a name="[17]"></a>TIMG7_IRQHandler</STRONG> (Thumb, 2880 bytes, Stack size 32 bytes, isr.o(.text.TIMG7_IRQHandler))
+<P><STRONG><a name="[17]"></a>TIMG7_IRQHandler</STRONG> (Thumb, 2904 bytes, Stack size 32 bytes, isr.o(.text.TIMG7_IRQHandler))
 <BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
 <LI>Call Chain = TIMG7_IRQHandler &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -997,7 +999,9 @@ Global Symbols
 <LI><a href="#[89]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_cha
 <LI><a href="#[6a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_set
 <LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
+<LI><a href="#[48]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[81]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[64]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fcmpge
 <LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
 <LI><a href="#[66]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 <LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
@@ -1096,7 +1100,7 @@ Global Symbols
 <LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[93]"></a>init_pid_my</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, pid.o(.text.init_pid_my))
+<P><STRONG><a name="[93]"></a>init_pid_my</STRONG> (Thumb, 52 bytes, Stack size 0 bytes, pid.o(.text.init_pid_my))
 <BR><BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
@@ -1112,8 +1116,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[2d]"></a>main</STRONG> (Thumb, 692 bytes, Stack size 56 bytes, main.o(.text.main))
-<BR><BR>[Stack]<UL><LI>Max Depth = 384<LI>Call Chain = main &rArr; key_action &rArr; oled_show &rArr; OLED_ShowFloat &rArr; pow &rArr; __kernel_poly &rArr; __aeabi_dmul
+<P><STRONG><a name="[2d]"></a>main</STRONG> (Thumb, 764 bytes, Stack size 56 bytes, main.o(.text.main))
+<BR><BR>[Stack]<UL><LI>Max Depth = 384 + Unknown Stack Size
+<LI>Call Chain = main &rArr; key_action &rArr; oled_show &rArr; OLED_ShowFloat &rArr; pow &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[67]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gpio_get
 <LI><a href="#[8e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;key_action
@@ -1128,6 +1133,7 @@ Global Symbols
 <LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
 <LI><a href="#[7e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;delay_ms
 <LI><a href="#[91]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;system_init
+<LI><a href="#[34]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__rt_entry_main
 </UL>
@@ -1298,6 +1304,7 @@ Global Symbols
 <LI><a href="#[8d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_angle
 <LI><a href="#[8c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_right
 <LI><a href="#[8a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;pid_left
+<LI><a href="#[17]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIMG7_IRQHandler
 </UL>
 
 <P><STRONG><a name="[a3]"></a>_fgeq</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, fcmp.o(i._fgeq), UNUSED)

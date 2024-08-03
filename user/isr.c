@@ -103,17 +103,17 @@ int abs_sin(int x)
 int time8_flag=0;
 int time8_flag1=0;
 int speed=17;//循迹的速度
-int speed_base=22;//断路速度
+#define  speed_base 22//断路速度
 int huang_time=0;
 int huang_flag=0;
 int ji_time=0;
 int jixu_flag=0;
 int jixu_time=0;
 //int time_my=0;
-int time_dajiao=80;
+int time_dajiao=80*(22.0/speed_base);
 int zi_flag=0;
 int zi_time=0;
-
+int dajiao_flag=0;
 void TIMG7_IRQHandler()
 {
 	if(DL_TimerG_getPendingInterrupt(TIMG7) == DL_TIMER_IIDX_LOAD)
@@ -199,6 +199,7 @@ void TIMG7_IRQHandler()
 		{
 			if(zhuang==0)
 			{
+
 //
 				pwm_cha=pid_angle(yaw_my,yaw_set[0]);
 				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
@@ -239,26 +240,33 @@ void TIMG7_IRQHandler()
 			if(zhuang==5)//回正
 			{
 				pwm_cha=pid_angle(yaw_my,yaw_set[1]-30);
-				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
-				pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);
+			pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
+			pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);
 				if(time8_flag==0)//进入赛道，并且蜂鸣器鸣叫
 				{
 					zhuang=2;
 					gpio_set(GPIOA, DL_GPIO_PIN_15,0);//蜂鸣器
 					gpio_set(GPIOB, DL_GPIO_PIN_27,1);//led灯
 					time_kai=1;
+					if(yaw_my<-195)
+						dajiao_flag=1;
 				}
 			}
 			if(zhuang==2)//断路
 			{
-				if(ji_time<50)
+				if(dajiao_flag==1)
 				{
-					pwm_cha=pid_angle(yaw_my,-yaw_set[1]+10);
+					if(ji_time<55)
+					{
+						pwm_cha=pid_angle(yaw_my,-yaw_set[1]+10);
+					}
+					else
+					{
+						pwm_cha=pid_angle(yaw_my,yaw_set[1]-25);
+					}
 				}
 				else
-				{
-					pwm_cha=pid_angle(yaw_my,yaw_set[1]-20);
-				}
+					pwm_cha=pid_angle(yaw_my,yaw_set[1]);
 				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
 				pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);
 				if(pian_num!=-1&&time_kai==0)//进入赛道，并且蜂鸣器鸣叫
@@ -319,7 +327,7 @@ void TIMG7_IRQHandler()
 			{
 				if(ji_time<time_dajiao)
 				{
-					pwm_cha=pid_angle(yaw_my,yaw_set[2]-10);
+					pwm_cha=pid_angle(yaw_my,yaw_set[2]-10+task4_num*3);
 				}
 				else
 				{
@@ -388,7 +396,7 @@ void TIMG7_IRQHandler()
 					
 				}
 			}
-			if(zhuang==7)//回正7
+			if(zhuang==7)//回正7 
 			{
 				pwm_cha=pid_angle(yaw_my,-yaw_set[1]);
 				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
@@ -401,13 +409,13 @@ void TIMG7_IRQHandler()
 			}
 			if(zhuang==3)//8的斜边下
 			{
-				if(ji_time<time_dajiao)
+				if(ji_time<time_dajiao+2)
 				{
-				pwm_cha=pid_angle(yaw_my,yaw_set[3]+10);
+				pwm_cha=pid_angle(yaw_my,yaw_set[3]+10-task4_num*4);
 				}
 				else
 				{
-				pwm_cha=pid_angle(yaw_my,yaw_set[1]-20);
+				pwm_cha=pid_angle(yaw_my,yaw_set[1]-30);
 				}
 				pwm_motor2=pid_left(my_z[3],speed_base-pwm_cha);
 				pwm_motor1=pid_right(my_y[3],speed_base+pwm_cha);

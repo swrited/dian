@@ -77,7 +77,7 @@ int main(void)
 	gpio_init(GPIOA, DL_GPIO_PIN_31, PA31, IN_UP);//1
 	gpio_init(GPIOB, DL_GPIO_PIN_13, PB13, IN_UP);//0
 //	gpio_init(GPIOB, DL_GPIO_PIN_20, PB20, IN_UP);//1
-	gpio_init(GPIOB, DL_GPIO_PIN_4, PB4, IN_UP);//1
+	gpio_init(GPIOB, DL_GPIO_PIN_1, PB1, IN_UP);//1
 	gpio_init(GPIOB, DL_GPIO_PIN_16, PB16, IN_UP);//1
 	//·äÃùÆ÷
 	gpio_init(GPIOA, DL_GPIO_PIN_15, PA15, OUT);//1
@@ -163,13 +163,13 @@ int main(void)
 			state[1] = gpio_get(GPIOA, DL_GPIO_PIN_31);
 			state[0] = gpio_get(GPIOB, DL_GPIO_PIN_13);
 			
-			state[5] = gpio_get(GPIOB, DL_GPIO_PIN_4);
+			state[5] = gpio_get(GPIOB, DL_GPIO_PIN_1);
 			state[6] = gpio_get(GPIOB, DL_GPIO_PIN_16);
 		
-//			for(int i=0;i<7;i++)
-//			printf("%d",state[i]);
-//			printf("%d",pian_num);
-//			printf("\n\r");
+			for(int i=0;i<7;i++)
+			printf("%d",state[i]);
+			printf("%d",pian_num);
+			printf("\n\r");
 			
 
 			if(state[5]==1) pian_num=5;
